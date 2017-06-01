@@ -3,13 +3,13 @@ require 'rspec_api_documentation/dsl'
 
 resource "Dogs" do
   before do
-    Bark::Resources::DogsController.any_instance.stub(:upload_image).and_return('https://www.example_image_url.jpg')
+    DogsController.any_instance.stub(:upload_image).and_return('https://www.example_image_url.jpg')
   end
 
   let!(:dog_1) { create(:dog) }
   let!(:dog_2) { create(:dog) }
 
-  get 'bark-resources/dogs' do
+  get '/dogs' do
     parameter :bark_user_ids, 'Array of one or more BarkBox user ids', required: true
 
     let!(:dog_3) { create(:dog) }
@@ -17,14 +17,14 @@ resource "Dogs" do
     example 'returns paginated response of specified dogs' do
       do_request
       json = JSON.parse(response_body)
-      expect(Bark::Resources::Dog.count).to eq(3)
+      expect(Dog.count).to eq(3)
       expect(json['data'].count).to eq(2)
       status.should == 200
     end
 
   end
 
-  get 'bark-resources/dogs' do
+  get '/dogs' do
     parameter :bark_user_ids, 'Array of one or more BarkBox user ids', required: true
     example 'bark_user_ids not provided' do
       do_request
@@ -32,7 +32,7 @@ resource "Dogs" do
     end
   end
 
-  get 'bark-resources/dogs/:id' do
+  get '/dogs/:id' do
     let(:id) { dog_1.id }
     example "list specific dog" do
       do_request
@@ -41,7 +41,7 @@ resource "Dogs" do
   end
 
 
-  get 'bark-resources/dogs/:id' do
+  get '/dogs/:id' do
     let(:id) { 123456 }
     example "attempting to list dog that does not exist" do
       do_request
@@ -49,7 +49,7 @@ resource "Dogs" do
     end
   end
 
-  post 'bark-resources/dogs' do
+  post '/dogs' do
     parameter :bark_user_id, required: true
     parameter :birthday, 'Any object that can be stored as DateTime'
     parameter :image, 'Can be image file, IO object, or url'
@@ -63,12 +63,12 @@ resource "Dogs" do
     let(:size) { dog_1.size }
 
     example "create dog" do
-      expect{ do_request }.to change{ Bark::Resources::Dog.count }.by(1)
+      expect{ do_request }.to change{ Dog.count }.by(1)
       status.should == 200
     end
   end
 
-  patch 'bark-resources/dogs/:id' do
+  patch '/dogs/:id' do
     parameter :name
     parameter :size
 
@@ -85,10 +85,10 @@ resource "Dogs" do
     end
   end
 
-  delete 'bark-resources/dogs/:id' do
+  delete '/dogs/:id' do
     let(:id) { dog_1.id }
     example "delete dog" do
-      expect{ do_request }.to change{ Bark::Resources::Dog.count }.by(-1)
+      expect{ do_request }.to change{ Dog.count }.by(-1)
 
       status.should == 204
     end

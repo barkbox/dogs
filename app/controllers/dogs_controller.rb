@@ -2,7 +2,7 @@ class DogsController < ApplicationController
   def index
     begin
       paginated_dogs = Dog.where(bark_user_id: users_params).cursor(cursor_params)
-      render json: paginated_dogs, each_serializer: Api::V1::DogSerializer
+      render json: paginated_dogs, each_serializer: V1::DogSerializer
     rescue => e
       render json: { errors: [status: '400', title: 'Bad Request'] }, status: :bad_request
     end
@@ -11,7 +11,7 @@ class DogsController < ApplicationController
   def show
     begin
       dog = Dog.find(params[:id])
-      render json: dog, serializer: Api::V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer
     rescue ActiveRecord::RecordNotFound => e
       render json: { errors: [ {status: '404', title:  'Not found'} ] }, status: :not_found
     end
@@ -26,7 +26,7 @@ class DogsController < ApplicationController
       end
       dog = Dog.new(filtered_params)
       dog.save!
-      render json: dog, serializer: Api::V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer
     rescue => e
       render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class DogsController < ApplicationController
       end
       dog = Dog.find(params[:id])
       dog.update!(filtered_params)
-      render json: dog, serializer: Api::V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer
     rescue => e
       render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
     end
