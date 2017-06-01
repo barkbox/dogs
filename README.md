@@ -19,7 +19,7 @@ $ bundle
 ### Migrations
 
 - copy over migrations
-    `bin/rake dogs:install:migrations`
+    `bin/rake app:dogs_engine:install:migrations`
 - run migrations
   `bin/rake db:migrate`
   `bin/rake db:test:prepare`

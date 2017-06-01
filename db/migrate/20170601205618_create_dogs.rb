@@ -1,6 +1,6 @@
-class CreateDogsTable < ActiveRecord::Migration
+class CreateDogs < ActiveRecord::Migration
   def change
-    create_table :dogs_tables do |t|
+    create_table :dogs do |t|
       t.integer :bark_user_id
       t.string :name
       t.datetime :birthday
