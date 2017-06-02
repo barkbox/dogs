@@ -13,7 +13,6 @@ gemspec
 gem 'acts_as_paranoid', '~> 0.5.0'
 gem 'cloudinary'
 gem 'paging_cursor', tag: "v0.2.0", git: "https://github.com/barkbox/paging_cursor.git"
-gem 'paper_trail', '~> 6'
 gem 'rspec_api_documentation'
 
 group :development, :test do

@@ -24,24 +24,8 @@ $ bundle
   `bin/rake db:migrate`
   `bin/rake db:test:prepare`
 
-### Mount
-mount engine in `routes.rb`
-
-
-TODO CONFIRM THAT THIS IS STILL NECESSARY NOW THAT ENGINE WAS CREATED WITH `--FULL`
-e.g.
-```
-Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      mount Dogs::Engine => "/"
-    end
-  end
-end
-```
-this produces routes at `/api/v1/dogs`
-
-note: where the engine is mounted within `routes.rb` matters. see `Mount Priority` here http://api.rubyonrails.org/classes/Rails/Engine.html 
+### Accessing routes
+Since the Dogs::Engine was created as full plugin, no action is additional action is required in the host app to have access to the routes at `/dogs`
 
 ### Add Cloudinary Credentials
 
@@ -71,6 +55,13 @@ test:
 ```
 4) save to `./config/cloudinary.yml`
 
+## Notes 
+  strongly advised to implement the [PaperTrail](https://github.com/airblade/paper_trail) gem in the host app. After installing gem put the following in an initializers
+  ```
+  class Dog
+    has_paper_trail
+  end
+  ```
 ## Api Docs
 documentation found here https://github.com/barkbox/apidocs/blob/master/docs/dogs/index.markdown
 

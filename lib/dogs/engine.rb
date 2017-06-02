@@ -4,7 +4,6 @@ module Dogs
     require 'acts_as_paranoid'
     require 'cloudinary'
     require 'paging_cursor'
-    require 'paper_trail'
     require 'rails'
 
     config.generators do |g|

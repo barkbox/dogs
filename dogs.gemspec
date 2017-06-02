@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_paranoid", "~> 0.5.0"
   s.add_dependency "cloudinary"
   s.add_dependency "paging_cursor"
-  s.add_dependency "paper_trail", "~> 6"
   s.add_dependency "rails", "~> 4.2.5"
 
   s.add_development_dependency "sqlite3"
