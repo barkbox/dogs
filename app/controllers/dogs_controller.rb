@@ -74,7 +74,7 @@ class DogsController < ApplicationController
 
     def upload_image(image)
       # Cloudinary::Uploader.upload method handles both image file and image urls
-      response = Cloudinary::Uploader.upload(image, folder: "dog-#{Rails.env}")
+      response = Cloudinary::Uploader.upload(image, folder: "dogs-#{Rails.env}")
       if response['secure_url']
         response['secure_url']
       else
