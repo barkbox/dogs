@@ -19,13 +19,13 @@ $ bundle
 ### Migrations
 
 - copy over migrations
-    `bin/rake app:dogs_engine:install:migrations`
+    `bin/rake dogs_engine:install:migrations`
 - run migrations
   `bin/rake db:migrate`
   `bin/rake db:test:prepare`
 
 ### Accessing routes
-Since the Dogs::Engine was created as full plugin, no action is additional action is required in the host app to have access to the routes at `/dogs`
+Since the Dogs::Engine was created as a full plugin (vs mountable), no action is additional action is required in the host app to have access to the routes at `/dogs`
 
 ### Add Cloudinary Credentials
 
