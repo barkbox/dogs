@@ -1,8 +1,9 @@
 class DogsController < ApplicationController
   def index
     begin
-      paginated_dogs = Dog.where(bark_user_id: users_params).cursor(cursor_params)
-      render json: paginated_dogs, each_serializer: V1::DogSerializer
+      dogs = Dog.where(bark_user_id: users_params)
+      authorize_for_resources(dogs)
+      render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer
     rescue => e
       render json: { errors: [status: '400', title: 'Bad Request'] }, status: :bad_request
     end
@@ -11,14 +12,16 @@ class DogsController < ApplicationController
   def show
     begin
       dog = Dog.find(params[:id])
+      authorize_for_resource(dog)
       render json: dog, serializer: V1::DogSerializer
-    rescue ActiveRecord::RecordNotFound => e
+    rescue => e
       render json: { errors: [ {status: '404', title:  'Not found'} ] }, status: :not_found
     end
   end
 
   def create
     begin 
+      authenticate
       filtered_params = dog_params
       if params[:image]
         image_url = upload_image(params[:image])
@@ -40,6 +43,7 @@ class DogsController < ApplicationController
         filtered_params.merge!(image_url: image_url)
       end
       dog = Dog.find(params[:id])
+      authorize_for_resource(dog)
       dog.update!(filtered_params)
       render json: dog, serializer: V1::DogSerializer
     rescue => e
@@ -48,8 +52,12 @@ class DogsController < ApplicationController
   end
 
   def destroy
-    dog = Dog.find(params[:id])
-    dog.destroy
+    begin
+      dog = Dog.find(params[:id])
+      authorize_for_resource(dog)
+      dog.destroy
+    rescue => e
+    end
     head :no_content
   end
 
