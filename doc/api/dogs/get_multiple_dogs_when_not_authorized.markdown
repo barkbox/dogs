@@ -1,6 +1,6 @@
 # Dogs API
 
-## not authorized
+## Get multiple dogs when not authorized
 
 ### GET /dogs
 
@@ -8,8 +8,6 @@
 
 | Name | Description | Required | Scope |
 |------|-------------|----------|-------|
-| bark_user_ids | Array of one or more BarkBox user ids | true |  |
-| bark_user_ids | Array of one or more BarkBox user ids | true |  |
 | bark_user_ids | Array of one or more BarkBox user ids | true |  |
 
 ### Request
@@ -21,11 +19,11 @@ Cookie: </pre>
 
 #### Route
 
-<pre>GET /dogs?bark_user_ids[]=12&amp;bark_user_ids[]=13</pre>
+<pre>GET /dogs?bark_user_ids[]=13&amp;bark_user_ids[]=14</pre>
 
 #### Query Parameters
 
-<pre>bark_user_ids: [&quot;12&quot;, &quot;13&quot;]</pre>
+<pre>bark_user_ids: [&quot;13&quot;, &quot;14&quot;]</pre>
 
 ### Response
 
@@ -36,8 +34,8 @@ X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
 Cache-Control: no-cache
-X-Request-Id: ed0b5c47-4856-4027-ab79-399765768ce6
-X-Runtime: 0.005921
+X-Request-Id: c5c4ad4c-04b0-4e9c-9f0e-5d745c4f7676
+X-Runtime: 0.003472
 Content-Length: 51</pre>
 
 #### Status

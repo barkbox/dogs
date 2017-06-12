@@ -33,7 +33,7 @@ resource 'Dogs' do
     describe 'success' do
       let!(:dog_3) { create(:dog) }
       let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
-      example 'returns paginated response of specified dogs' do
+      example 'Get multiple dogs' do
         do_request
         json = JSON.parse(response_body)
         expect(Dog.count).to eq(3)
@@ -43,17 +43,16 @@ resource 'Dogs' do
     end
 
     describe 'failure' do
-      example 'bark_user_ids not provided' do
+      example 'Get multiple dogs without bark_user_ids param' do
         do_request
         status.should == 400
       end
     end
 
     describe 'must be authorized' do
-      parameter :bark_user_ids, 'Array of one or more BarkBox user ids', required: true
       let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
 
-      example 'authorized' do
+      example 'Get multiple dogs when authorized' do
         authorized_helper
         do_request
         json = JSON.parse(response_body)
@@ -61,9 +60,8 @@ resource 'Dogs' do
         status.should == 200
       end
 
-      parameter :bark_user_ids, 'Array of one or more BarkBox user ids', required: true
       let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
-      example 'not authorized' do
+      example 'Get multiple dogs when not authorized' do
         not_authorized_helper
         do_request
         status.should == 400
@@ -73,10 +71,10 @@ resource 'Dogs' do
 
   get '/dogs/:id' do
 
-    context 'dog exists' do
+    context 'dog exists (when user authorized)' do
       let(:id) { dog_1.id }
 
-      example 'list specific dog when authorized' do
+      example 'Get dog' do
         authorized_helper
         do_request
         status.should == 200
@@ -85,13 +83,13 @@ resource 'Dogs' do
 
     context 'dog does not exist' do
       let(:id) { 123456 }
-      example 'attempting to list dog that does not exist' do
+      example 'Get dog that does not exist ' do
         do_request
         status.should == 404
       end
     end
 
-    example 'returns 404 when not authorized' do
+    example 'Get dog when not authorized' do
       # TODO fix this later
       # should be forbidden not 403
       not_authorized_helper
@@ -113,13 +111,13 @@ resource 'Dogs' do
     let(:name) { dog_1.name }
     let(:size) { dog_1.size }
 
-    example 'creates dog when authenticated' do
+    example 'Create dog when authenticated' do
       authenticated_helper
       expect{ do_request }.to change{ Dog.count }.by(1)
       status.should == 200
     end
 
-    example 'does not create dog when not authenticated' do
+    example 'Create dog when not authenticated' do
       not_authenticated_helper
       expect{ do_request }.to_not change{ Dog.count }
       status.should == 422
@@ -127,6 +125,7 @@ resource 'Dogs' do
   end
 
   patch '/dogs/:id' do
+    explanation 'also able to do via PUT' 
     parameter :name
     parameter :size
 
@@ -134,7 +133,7 @@ resource 'Dogs' do
     let(:name) { 'Doge Bryant'  }
     let(:size) { 'L' }
 
-    example 'updates dog when authorized' do
+    example 'Update dog when authorized' do
       authorized_helper
       do_request
       dog_1.reload
@@ -143,7 +142,7 @@ resource 'Dogs' do
       status.should == 200
     end
 
-    example 'does not update dog not authorized' do
+    example 'Update dog not authorized' do
       not_authorized_helper
       do_request
       dog_1.reload
@@ -156,13 +155,13 @@ resource 'Dogs' do
   delete '/dogs/:id' do
     let(:id) { dog_1.id }
 
-    example 'deletes dog when authorized' do
+    example 'Delete dog when authorized' do
       authorized_helper
       expect{ do_request }.to change{ Dog.count }.by(-1)
       status.should == 204
     end
 
-    example 'does not delete dog when not authorized' do
+    example 'Delete dog when not authorized' do
       not_authorized_helper
       dog_count = Dog.count
       do_request

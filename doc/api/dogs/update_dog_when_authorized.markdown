@@ -1,6 +1,8 @@
 # Dogs API
 
-## does not update dog not authorized
+also able to do via PUT
+
+## Update dog when authorized
 
 ### PATCH /dogs/:id
 
@@ -35,22 +37,28 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-Cache-Control: no-cache
-X-Request-Id: 822b36cd-e6b6-4e67-927d-a7fee64a0dc2
-X-Runtime: 0.008185
-Content-Length: 60</pre>
+ETag: W/&quot;43afc63b6278cb9ce642fd418302c1e6&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 9359a025-3c20-46af-b5a1-35657bf7cf68
+X-Runtime: 0.014920
+Content-Length: 186</pre>
 
 #### Status
 
-<pre>422 Unprocessable Entity</pre>
+<pre>200 OK</pre>
 
 #### Body
 
 <pre>{
-  "errors": [
-    {
-      "status": "422",
-      "title": "not authorized error"
+  "data": {
+    "id": "1",
+    "type": "dogs",
+    "attributes": {
+      "bark_user_id": 22,
+      "birthday": "2015-01-01T05:00:00.000Z",
+      "image_url": "http://www.example_image_url_22.jpg",
+      "name": "Doge Bryant",
+      "size": "L"
     }
-  ]
+  }
 }</pre>

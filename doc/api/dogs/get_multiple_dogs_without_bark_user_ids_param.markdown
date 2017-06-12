@@ -1,6 +1,6 @@
 # Dogs API
 
-## bark_user_ids not provided
+## Get multiple dogs without bark_user_ids param
 
 ### GET /dogs
 
@@ -30,8 +30,8 @@ X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
 Cache-Control: no-cache
-X-Request-Id: f1f7c912-4eb0-41b5-9535-10db3ce62184
-X-Runtime: 0.006842
+X-Request-Id: b1803206-df2a-4dd6-999f-a917fe9a01ed
+X-Runtime: 0.002390
 Content-Length: 51</pre>
 
 #### Status

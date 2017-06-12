@@ -1,6 +1,6 @@
 # Dogs API
 
-## does not delete dog when not authorized
+## Delete dog when authorized
 
 ### DELETE /dogs/:id
 ### Request
@@ -23,8 +23,8 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Cache-Control: no-cache
-X-Request-Id: 48d47c15-cd28-4fb4-a2b6-7968d3179cae
-X-Runtime: 0.007198</pre>
+X-Request-Id: eb1737d4-c033-480f-946d-68c503a1b170
+X-Runtime: 0.015926</pre>
 
 #### Status
 

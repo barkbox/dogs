@@ -1,6 +1,6 @@
 # Dogs API
 
-## returns paginated response of specified dogs
+## Get multiple dogs
 
 ### GET /dogs
 
@@ -19,11 +19,11 @@ Cookie: </pre>
 
 #### Route
 
-<pre>GET /dogs?bark_user_ids[]=7&amp;bark_user_ids[]=8</pre>
+<pre>GET /dogs?bark_user_ids[]=15&amp;bark_user_ids[]=16</pre>
 
 #### Query Parameters
 
-<pre>bark_user_ids: [&quot;7&quot;, &quot;8&quot;]</pre>
+<pre>bark_user_ids: [&quot;15&quot;, &quot;16&quot;]</pre>
 
 ### Response
 
@@ -33,11 +33,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;458aacefdb0b04e40a0f4d8b2788fbdb&quot;
+ETag: W/&quot;9d526c24709b0ee4f1973e714b8cef03&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: a3eba5bb-d952-4774-a530-8bfbcf450bb7
-X-Runtime: 0.017316
-Content-Length: 863</pre>
+X-Request-Id: 4a3cb2f5-947a-46d9-880d-f11e0134b681
+X-Runtime: 0.006022
+Content-Length: 877</pre>
 
 #### Status
 
@@ -51,9 +51,9 @@ Content-Length: 863</pre>
       "id": "1",
       "type": "dogs",
       "attributes": {
-        "bark_user_id": 7,
+        "bark_user_id": 15,
         "birthday": "2015-01-01T05:00:00.000Z",
-        "image_url": "http://www.example_image_url_7.jpg",
+        "image_url": "http://www.example_image_url_15.jpg",
         "name": "Cristiano Ruffnaldo",
         "size": "M"
       }
@@ -62,19 +62,19 @@ Content-Length: 863</pre>
       "id": "2",
       "type": "dogs",
       "attributes": {
-        "bark_user_id": 8,
+        "bark_user_id": 16,
         "birthday": "2015-01-01T05:00:00.000Z",
-        "image_url": "http://www.example_image_url_8.jpg",
+        "image_url": "http://www.example_image_url_16.jpg",
         "name": "Cristiano Ruffnaldo",
         "size": "M"
       }
     }
   ],
   "links": {
-    "self": "http://example.org/dogs?bark_user_ids[]=7&bark_user_ids[]=8&cursor[before]=3",
-    "first": "http://example.org/dogs?bark_user_ids[]=7&bark_user_ids[]=8&cursor[before]",
-    "prev": "http://example.org/dogs?bark_user_ids[]=7&bark_user_ids[]=8&cursor[after]=2",
-    "next": "http://example.org/dogs?bark_user_ids[]=7&bark_user_ids[]=8&cursor[before]=1",
-    "last": "http://example.org/dogs?bark_user_ids[]=7&bark_user_ids[]=8&cursor[after]"
+    "self": "http://example.org/dogs?bark_user_ids[]=15&bark_user_ids[]=16&cursor[before]=3",
+    "first": "http://example.org/dogs?bark_user_ids[]=15&bark_user_ids[]=16&cursor[before]",
+    "prev": "http://example.org/dogs?bark_user_ids[]=15&bark_user_ids[]=16&cursor[after]=2",
+    "next": "http://example.org/dogs?bark_user_ids[]=15&bark_user_ids[]=16&cursor[before]=1",
+    "last": "http://example.org/dogs?bark_user_ids[]=15&bark_user_ids[]=16&cursor[after]"
   }
 }</pre>

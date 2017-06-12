@@ -1,6 +1,6 @@
 # Dogs API
 
-## returns 404 when not authorized
+## Get dog that does not exist 
 
 ### GET /dogs/:id
 ### Request
@@ -12,7 +12,7 @@ Cookie: </pre>
 
 #### Route
 
-<pre>GET /dogs/%3Aid</pre>
+<pre>GET /dogs/123456</pre>
 
 ### Response
 
@@ -23,8 +23,8 @@ X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
 Cache-Control: no-cache
-X-Request-Id: fb70e062-c728-4e59-9d97-34dee8d3611a
-X-Runtime: 0.009921
+X-Request-Id: a37a9118-673a-458c-bcac-e3966487da5c
+X-Runtime: 0.006494
 Content-Length: 49</pre>
 
 #### Status

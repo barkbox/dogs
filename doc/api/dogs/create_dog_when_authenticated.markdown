@@ -1,6 +1,6 @@
 # Dogs API
 
-## creates dog when authenticated
+## Create dog when authenticated
 
 ### POST /dogs
 
@@ -28,7 +28,7 @@ Cookie: </pre>
 
 #### Body
 
-<pre>bark_user_id=3&birthday=2015-01-01+05%3A00%3A00+UTC&image=http%3A%2F%2Fwww.example_image_url_3.jpg&name=Cristiano+Ruffnaldo&size=M</pre>
+<pre>bark_user_id=26&birthday=2015-01-01+05%3A00%3A00+UTC&image=http%3A%2F%2Fwww.example_image_url_26.jpg&name=Cristiano+Ruffnaldo&size=M</pre>
 
 ### Response
 
@@ -38,11 +38,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;e26945afedda1ae8cfa565997faad460&quot;
+ETag: W/&quot;0c7d7626307fb94c3dc8706f84edd1c3&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 059aec0d-fb01-4b89-acfb-6c67d85611f0
-X-Runtime: 0.018848
-Content-Length: 191</pre>
+X-Request-Id: 503a2919-8eee-43ee-97e1-8db95a6e4ee7
+X-Runtime: 0.006454
+Content-Length: 192</pre>
 
 #### Status
 
@@ -55,7 +55,7 @@ Content-Length: 191</pre>
     "id": "3",
     "type": "dogs",
     "attributes": {
-      "bark_user_id": 3,
+      "bark_user_id": 26,
       "birthday": "2015-01-01T05:00:00.000Z",
       "image_url": "https://www.example_image_url.jpg",
       "name": "Cristiano Ruffnaldo",
