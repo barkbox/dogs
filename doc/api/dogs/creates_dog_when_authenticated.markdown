@@ -1,13 +1,16 @@
 # Dogs API
 
-## update dog
+## creates dog when authenticated
 
-### PATCH /dogs/:id
+### POST /dogs
 
 ### Parameters
 
 | Name | Description | Required | Scope |
 |------|-------------|----------|-------|
+| bark_user_id |  bark user | true |  |
+| birthday | Any object that can be stored as DateTime | false |  |
+| image | Can be image file, IO object, or url | false |  |
 | name |  name | false |  |
 | size |  size | false |  |
 
@@ -21,11 +24,11 @@ Cookie: </pre>
 
 #### Route
 
-<pre>PATCH /dogs/1</pre>
+<pre>POST /dogs</pre>
 
 #### Body
 
-<pre>name=Doge+Bryant&size=L</pre>
+<pre>bark_user_id=3&birthday=2015-01-01+05%3A00%3A00+UTC&image=http%3A%2F%2Fwww.example_image_url_3.jpg&name=Cristiano+Ruffnaldo&size=M</pre>
 
 ### Response
 
@@ -35,11 +38,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;8edc6afa5a20bd35215c074cd9ded6ec&quot;
+ETag: W/&quot;e26945afedda1ae8cfa565997faad460&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 7e98a7f4-4a1f-4cea-9a0d-cdb3ba7555e4
-X-Runtime: 0.023216
-Content-Length: 184</pre>
+X-Request-Id: 059aec0d-fb01-4b89-acfb-6c67d85611f0
+X-Runtime: 0.018848
+Content-Length: 191</pre>
 
 #### Status
 
@@ -49,14 +52,14 @@ Content-Length: 184</pre>
 
 <pre>{
   "data": {
-    "id": "1",
+    "id": "3",
     "type": "dogs",
     "attributes": {
-      "bark_user_id": 1,
+      "bark_user_id": 3,
       "birthday": "2015-01-01T05:00:00.000Z",
-      "image_url": "http://www.example_image_url_1.jpg",
-      "name": "Doge Bryant",
-      "size": "L"
+      "image_url": "https://www.example_image_url.jpg",
+      "name": "Cristiano Ruffnaldo",
+      "size": "M"
     }
   }
 }</pre>

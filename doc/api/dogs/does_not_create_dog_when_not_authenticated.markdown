@@ -1,6 +1,6 @@
 # Dogs API
 
-## create dog
+## does not create dog when not authenticated
 
 ### POST /dogs
 
@@ -28,7 +28,7 @@ Cookie: </pre>
 
 #### Body
 
-<pre>bark_user_id=12&birthday=2015-01-01+05%3A00%3A00+UTC&image=http%3A%2F%2Fwww.example_image_url_12.jpg&name=Cristiano+Ruffnaldo&size=M</pre>
+<pre>bark_user_id=1&birthday=2015-01-01+05%3A00%3A00+UTC&image=http%3A%2F%2Fwww.example_image_url_1.jpg&name=Cristiano+Ruffnaldo&size=M</pre>
 
 ### Response
 
@@ -38,28 +38,22 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;6656561eb3cfd5cae3d46ab9f6aa4b54&quot;
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 7d1889c7-9fe4-475a-9b80-f987b555ba87
-X-Runtime: 0.009264
-Content-Length: 192</pre>
+Cache-Control: no-cache
+X-Request-Id: afa1c69b-1a6c-4119-bb33-c69efa8c0a2b
+X-Runtime: 0.012101
+Content-Length: 61</pre>
 
 #### Status
 
-<pre>200 OK</pre>
+<pre>422 Unprocessable Entity</pre>
 
 #### Body
 
 <pre>{
-  "data": {
-    "id": "3",
-    "type": "dogs",
-    "attributes": {
-      "bark_user_id": 12,
-      "birthday": "2015-01-01T05:00:00.000Z",
-      "image_url": "https://www.example_image_url.jpg",
-      "name": "Cristiano Ruffnaldo",
-      "size": "M"
+  "errors": [
+    {
+      "status": "422",
+      "title": "unauthenticated error"
     }
-  }
+  ]
 }</pre>
