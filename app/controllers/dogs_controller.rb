@@ -3,7 +3,7 @@ class DogsController < ApplicationController
     begin
       dogs = Dog.where(bark_user_id: users_params)
       authorize_for_resources(dogs)
-      render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer
+      render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
     rescue => e
       render json: { errors: [status: '400', title: 'Bad Request'] }, status: :bad_request
     end
@@ -13,7 +13,7 @@ class DogsController < ApplicationController
     begin
       dog = Dog.find(params[:id])
       authorize_for_resource(dog)
-      render json: dog, serializer: V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
     rescue => e
       render json: { errors: [ {status: '404', title:  'Not found'} ] }, status: :not_found
     end
@@ -29,7 +29,7 @@ class DogsController < ApplicationController
       end
       dog = Dog.new(filtered_params)
       dog.save!
-      render json: dog, serializer: V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
     rescue => e
       render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class DogsController < ApplicationController
       dog = Dog.find(params[:id])
       authorize_for_resource(dog)
       dog.update!(filtered_params)
-      render json: dog, serializer: V1::DogSerializer
+      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
     rescue => e
       render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
     end

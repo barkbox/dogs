@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe V1::DogSerializer do
 
   let(:dog) { build(:dog) }
-  let(:options) {{ serializer: V1::DogSerializer }}
+  let(:options) {{ serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore }}
   let(:json) { JSON.parse(ActiveModelSerializers::SerializableResource.new(dog, options).to_json) }
 
   it 'serializes correct attributes' do
