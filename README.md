@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dogs', git: 'https://github.com/barkbox/dogs.git'
+gem 'dogs', github: 'barkbox/dogs'
 ```
 
 And then execute:
@@ -19,14 +19,34 @@ $ bundle
 ### Migrations
 
 - copy over migrations
-    `bin/rake dogs_engine:install:migrations`
+    `rake dogs_engine:install:migrations`
 - run migrations
-  `bin/rake db:migrate`
-  `bin/rake db:test:prepare`
+  `rake db:migrate`
+  `rake db:test:prepare`
 
-### Accessing routes
-Since the Dogs::Engine was created as a full plugin (vs mountable), no action is additional action is required in the host app to have access to the routes at `/dogs`
-
+### Setting up routes
+No routes are provided from the engine by default. You can set them up in the host app as you would a normal set of routes: 
+```
+resources :dogs, except[:new, :edit]
+```
+or
+```
+get 'api/v2/dogs', to: 'dogs#index'
+post 'api/v2/dogs', to: 'dogs#create'
+get 'api/v2/dogs/:id', to: 'dogs#show'
+put 'api/v2/dogs/:id', to: 'dogs#update'
+patch 'api/v2/dogs/:id', to: 'dogs#update'
+delete 'api/v2/dogs/:id', to: 'dogs#destroy'
+```
+**NOTE:**
+when namespaced as below, Rails will end up looking for a controller at `/api/v2/dogs_controller.rb` which does not exist
+```
+namespace :api do
+  namespace :v2 do
+    resources :dogs, except[:new, :edit]
+  end
+end
+```
 ### Authentication/Authorization
   The host app **must** define the four methods below in or up the inheritance chain from `ApplicationController`. The engine will look in the host's `ApplicationController` first.
 
