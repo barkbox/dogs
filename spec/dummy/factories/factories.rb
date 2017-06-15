@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :dog do
-    sequence(:bark_user_id)
+    sequence(:user_id)
     name     'Cristiano Ruffnaldo'
     birthday Time.local(2015,1,1)
     size     "M"

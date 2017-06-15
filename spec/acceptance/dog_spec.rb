@@ -28,11 +28,11 @@ resource 'Dogs' do
   let!(:dog_2) { create(:dog) }
 
   get '/dogs' do
-    parameter :bark_user_ids, 'Array of one or more BarkBox user ids', required: true
+    parameter :user_ids, 'Array of one or more BarkBox user ids', required: true
 
     describe 'success' do
       let!(:dog_3) { create(:dog) }
-      let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
+      let(:user_ids) { [dog_1.user_id, dog_2.user_id] }
       example 'Get multiple dogs' do
         do_request
         json = JSON.parse(response_body)
@@ -43,14 +43,14 @@ resource 'Dogs' do
     end
 
     describe 'failure' do
-      example 'Get multiple dogs without bark_user_ids param' do
+      example 'Get multiple dogs without user_ids param' do
         do_request
         status.should == 400
       end
     end
 
     describe 'must be authorized' do
-      let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
+      let(:user_ids) { [dog_1.user_id, dog_2.user_id] }
 
       example 'Get multiple dogs when authorized' do
         authorized_helper
@@ -60,7 +60,7 @@ resource 'Dogs' do
         status.should == 200
       end
 
-      let(:bark_user_ids) { [dog_1.bark_user_id, dog_2.bark_user_id] }
+      let(:user_ids) { [dog_1.user_id, dog_2.user_id] }
       example 'Get multiple dogs when not authorized' do
         not_authorized_helper
         do_request
@@ -99,13 +99,13 @@ resource 'Dogs' do
   end
 
   post '/dogs' do
-    parameter :bark_user_id, required: true
+    parameter :user_id, required: true
     parameter :birthday, 'Any object that can be stored as DateTime'
     parameter :image, 'Can be image file, IO object, or url'
     parameter :name
     parameter :size
 
-    let(:bark_user_id) { dog_1.bark_user_id }
+    let(:user_id) { dog_1.user_id }
     let(:birthday) { dog_1.birthday }
     let(:image) { dog_1.image_url }
     let(:name) { dog_1.name }

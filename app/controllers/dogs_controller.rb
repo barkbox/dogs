@@ -1,7 +1,7 @@
 class DogsController < ApplicationController
   def index
     begin
-      dogs = Dog.where(bark_user_id: users_params)
+      dogs = Dog.where(user_id: users_params)
       authorize_for_resources(dogs)
       render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
     rescue => e
@@ -73,11 +73,11 @@ class DogsController < ApplicationController
     end
 
     def dog_params
-      params.permit(:image_url, :name, :birthday, :size, :bark_user_id)
+      params.permit(:image_url, :name, :birthday, :size, :user_id)
     end
 
     def users_params
-      params.require(:bark_user_ids)
+      params.require(:users_ids)
     end
 
     def upload_image(image)
