@@ -1,67 +1,53 @@
 class DogsController < ApplicationController
+  before_action :authenticate
+
   def index
-    begin
-      dogs = Dog.where(user_id: users_params)
-      authorize_for_resources(dogs)
-      render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
-    rescue => e
-      render json: { errors: [status: '400', title: 'Bad Request'] }, status: :bad_request
+    if params[:user_id]
+      dogs = Dog.where(user_id: params[:user_id])
+    else
+      dogs = Dog.all
     end
+    authorize_for_resources(dogs)
+    render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer
   end
 
   def show
-    begin
-      dog = Dog.find(params[:id])
-      authorize_for_resource(dog)
-      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
-    rescue => e
-      render json: { errors: [ {status: '404', title:  'Not found'} ] }, status: :not_found
-    end
+    dog = Dog.find(params[:id])
+    authorize_for_resource(dog)
+    render json: dog, serializer: V1::DogSerializer
   end
 
   def create
-    begin 
-      authenticate
-      filtered_params = dog_params
-      if params[:image]
-        image_url = upload_image(params[:image])
-        filtered_params.merge!(image_url: image_url)
-      end
-      dog = Dog.new(filtered_params)
-      dog.save!
-      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
-    rescue => e
-      render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
+    filtered_params = dog_params
+    if params[:image].present?
+      image_url = upload_image(params[:image])
+      filtered_params.merge!(image_url: image_url)
     end
+    dog = Dog.new(filtered_params)
+    dog.save
+    render json: dog, serializer: V1::DogSerializer
   end
 
   def update
-    begin
-      filtered_params = dog_params
-      if params[:image]
-        image_url = upload_image(params[:image])
-        filtered_params.merge!(image_url: image_url)
-      end
-      dog = Dog.find(params[:id])
-      authorize_for_resource(dog)
-      dog.update!(filtered_params)
-      render json: dog, serializer: V1::DogSerializer, adapter: :json_api, key_transform: :underscore
-    rescue => e
-      render json: { errors: [status: '422', title: e.message] }, status: :unprocessable_entity
+    filtered_params = dog_params
+    if params[:image].present?
+      image_url = upload_image(params[:image])
+      filtered_params.merge!(image_url: image_url)
     end
+    dog = Dog.find(params[:id])
+    authorize_for_resource(dog)
+    dog.update(filtered_params)
+    render json: dog, serializer: V1::DogSerializer
   end
 
   def destroy
-    begin
-      dog = Dog.find(params[:id])
-      authorize_for_resource(dog)
-      dog.destroy
-    rescue => e
-    end
-    head :no_content
+    dog = Dog.find(params[:id])
+    authorize_for_resource(dog)
+    dog.destroy
   end
 
   private
+    # does this work better/differently than the one in shop api controller?
     def cursor_params
       if params[:cursor] && params[:cursor].has_key?(:after)
         { after: params[:cursor][:after] }
@@ -73,11 +59,7 @@ class DogsController < ApplicationController
     end
 
     def dog_params
-      params.permit(:image_url, :name, :birthday, :size, :user_id)
-    end
-
-    def users_params
-      params.require(:users_ids)
+      params.permit(:name, :birthday, :size, :user_id)
     end
 
     def upload_image(image)
