@@ -7,7 +7,6 @@ module Dogs
 
     def initialize
       @base_api_controller = nil
-      @controller_namespace = nil
     end
   end
 end

@@ -1,4 +1,5 @@
-class Dogs.namespaced_dogs_controller < ApplicationController
+class DogsController < ApplicationController
+# class DogsController < ::Api::V2::ApiController
   before_action :authenticate
 
   def index
