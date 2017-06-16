@@ -21,4 +21,8 @@ module Dogs
   def self.host_base_api_controller
     "::#{config.base_api_controller}".constantize
   end
+
+  def self.namespaced_dogs_controller
+    "#{config.controller_namespace}::DogsController".constantize
+  end
 end

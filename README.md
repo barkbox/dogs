@@ -27,7 +27,7 @@ $ bundle
 ### Setting up routes
 No routes are provided from the engine by default. You can set them up in the host app as you would a normal set of routes: 
 ```
-resources :dogs, except[:new, :edit]
+resources :dogs, except: [:new, :edit]
 ```
 or
 ```
