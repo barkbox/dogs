@@ -1,5 +1,24 @@
-require "dogs/engine"
+require 'dogs/config'
+require 'dogs/engine'
 
 module Dogs
-  # Your code goes here...
+  class << self
+    attr_accessor :config
+  end
+
+  def self.config
+    @config ||= Configuration.new
+  end
+
+  def self.reset
+    @config = Configuration.new
+  end
+
+  def self.configure
+    yield(config)
+  end
+
+  def self.host_base_api_controller
+    "::#{config.base_api_controller}".constantize
+  end
 end
