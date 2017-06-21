@@ -1,5 +1,4 @@
-class DogsController < ApplicationController
-# class DogsController < ::Api::V2::ApiController
+class DogsController < Dogs::ApplicationController
   before_action :authenticate
 
   def index
@@ -45,31 +44,22 @@ class DogsController < ApplicationController
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
     dog.destroy
+    render json: dog, serializer: V1::DogSerializer
   end
 
   private
-    # does this work better/differently than the one in shop api controller?
-    def cursor_params
-      if params[:cursor] && params[:cursor].has_key?(:after)
-        { after: params[:cursor][:after] }
-      elsif params[:cursor] && params[:cursor].has_key?(:before)
-        { before: params[:cursor][:before] }
-      else
-        { before: nil }
-      end
-    end
 
-    def dog_params
-      params.permit(:name, :birthday, :size, :user_id)
-    end
+  def dog_params
+    params.permit(:name, :birthday, :size, :user_id)
+  end
 
-    def upload_image(image)
-      # Cloudinary::Uploader.upload method handles both image file and image urls
-      response = Cloudinary::Uploader.upload(image, folder: "dogs-#{Rails.env}")
-      if response['secure_url']
-        response['secure_url']
-      else
-        raise 'unable to upload image to Cloudinary'
-      end
+  def upload_image(image)
+    # Cloudinary::Uploader.upload method handles both image file and image urls
+    response = Cloudinary::Uploader.upload(image, folder: "dogs-#{Rails.env}")
+    if response['secure_url']
+      response['secure_url']
+    else
+      raise 'unable to upload image to Cloudinary'
     end
+  end
 end

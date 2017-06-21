@@ -8,7 +8,7 @@ RSpec.describe V1::DogSerializer do
 
   it 'serializes correct attributes' do
     ['user_id', 'birthday', 'image_url', 'name', 'size'].each do |key|
-          expect(json['data']['attributes']).to include(key)
+      expect(json['data']['attributes']).to include(key)
     end
   end
 end

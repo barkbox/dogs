@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601210640) do
+ActiveRecord::Schema.define(version: 20170621162750) do
 
   create_table "dogs", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,5 +25,9 @@ ActiveRecord::Schema.define(version: 20170601210640) do
   end
 
   add_index "dogs", ["deleted_at"], name: "index_dogs_on_deleted_at"
+
+  create_table "users", force: :cascade do |t|
+    t.boolean "is_admin", default: false
+  end
 
 end

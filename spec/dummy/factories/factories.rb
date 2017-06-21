@@ -6,4 +6,11 @@ FactoryGirl.define do
     size     "M"
     sequence(:image_url) { |n| "http://www.example_image_url_#{n}.jpg" }
   end
+
+  factory :user do
+  end
+
+  factory :admin, parent: :user do
+    is_admin true
+  end
 end
