@@ -42,6 +42,7 @@ resource 'Dogs' do
     let(:image) { 'www.example.com/pickles.jpg' }
     let(:name) { 'Cristiano Ruffnaldo' }
     let(:size) { 'M' }
+    let(:sex) { 'M' }
 
     example_request 'Create dog' do
       expect(status).to eq(200)
@@ -57,6 +58,7 @@ resource 'Dogs' do
     let(:id) { dog.id }
     let(:name) { 'Doge Bryant'  }
     let(:size) { 'L' }
+    let(:sex) { 'F' }
 
     example_request 'Update dog' do
       expect(status).to eq(200)

@@ -50,7 +50,7 @@ class DogsController < Dogs::ApplicationController
   private
 
   def dog_params
-    params.permit(:name, :birthday, :size, :user_id)
+    params.permit(:name, :birthday, :size, :sex, :user_id)
   end
 
   def upload_image(image)
