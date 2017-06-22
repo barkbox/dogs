@@ -5,6 +5,7 @@ class CreateDogs < ActiveRecord::Migration
       t.string :name
       t.datetime :birthday
       t.string :size
+      t.string :sex
       t.string :image_url
       
       t.timestamps

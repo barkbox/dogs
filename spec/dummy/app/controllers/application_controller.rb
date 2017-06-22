@@ -1,6 +1,3 @@
-# p Rails.root
-# require '../../lib/unauthenticated_error.rb'
-
 class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
   around_filter :catch_errors

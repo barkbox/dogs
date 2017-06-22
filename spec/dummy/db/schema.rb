@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170621162750) do
     t.string   "name"
     t.datetime "birthday"
     t.string   "size"
+    t.string   "sex"
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"

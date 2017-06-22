@@ -16,8 +16,7 @@ resource 'Dogs' do
     let(:dog) { create(:dog) }
     let(:user_id) { dog.user_id }
 
-    example 'Get all dogs' do
-      do_request
+    example_request 'Get all dogs' do
       expect(status).to eq(200)
     end
   end
@@ -26,8 +25,7 @@ resource 'Dogs' do
     let(:dog) { create(:dog) }
     let(:id) { dog.id }
 
-    example 'Get dog by id' do
-      do_request
+    example_request 'Get dog by id' do
       expect(status).to eq(200)
     end
   end
@@ -45,8 +43,7 @@ resource 'Dogs' do
     let(:name) { 'Cristiano Ruffnaldo' }
     let(:size) { 'M' }
 
-    example 'Create dog' do
-      do_request
+    example_request 'Create dog' do
       expect(status).to eq(200)
     end
   end
@@ -61,8 +58,7 @@ resource 'Dogs' do
     let(:name) { 'Doge Bryant'  }
     let(:size) { 'L' }
 
-    example 'Update dog' do
-      do_request
+    example_request 'Update dog' do
       expect(status).to eq(200)
     end
   end
@@ -71,8 +67,7 @@ resource 'Dogs' do
     let(:dog) { create(:dog) }
     let(:id) { dog.id }
 
-    example 'Delete dog' do
-      do_request
+    example_request 'Delete dog' do
       expect(status).to eq(200)
     end
   end
