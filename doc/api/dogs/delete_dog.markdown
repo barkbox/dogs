@@ -1,18 +1,19 @@
 # Dogs API
 
-## Get dog
+## Delete dog
 
-### GET /dogs/:id
+### DELETE /dogs/:id
 ### Request
 
 #### Headers
 
 <pre>Host: example.org
+Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
 #### Route
 
-<pre>GET /dogs/1</pre>
+<pre>DELETE /dogs/1</pre>
 
 ### Response
 
@@ -22,11 +23,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;aa8e43e6f7dc7ac983c63fa69a9bc9eb&quot;
+ETag: W/&quot;d26973bf470d761d33bf707455303f91&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 9b4b0146-0c04-42a0-8930-b3269ba6f515
-X-Runtime: 0.016710
-Content-Length: 192</pre>
+X-Request-Id: 5690de45-9b51-4d57-aa4e-058afa4955bf
+X-Runtime: 0.006034
+Content-Length: 197</pre>
 
 #### Status
 
@@ -39,11 +40,12 @@ Content-Length: 192</pre>
     "id": "1",
     "type": "dogs",
     "attributes": {
-      "bark_user_id": 7,
+      "user_id": 4,
       "birthday": "2015-01-01T05:00:00.000Z",
-      "image_url": "http://www.example_image_url_7.jpg",
+      "image_url": "http://www.example_image_url_4.jpg",
       "name": "Cristiano Ruffnaldo",
-      "size": "M"
+      "size": "M",
+      "sex": "M"
     }
   }
 }</pre>

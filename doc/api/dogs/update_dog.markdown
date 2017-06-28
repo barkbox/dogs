@@ -2,7 +2,7 @@
 
 also able to do via PUT
 
-## Update dog not authorized
+## Update dog
 
 ### PATCH /dogs/:id
 
@@ -37,22 +37,29 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-Cache-Control: no-cache
-X-Request-Id: c77b5268-5e09-486d-9ec2-16a303c61671
-X-Runtime: 0.005896
-Content-Length: 60</pre>
+ETag: W/&quot;f48531f7d8e8937a464a7e443e70e4ad&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 97155ddd-a56d-4dae-99d9-b949adcaedb1
+X-Runtime: 0.008019
+Content-Length: 189</pre>
 
 #### Status
 
-<pre>422 Unprocessable Entity</pre>
+<pre>200 OK</pre>
 
 #### Body
 
 <pre>{
-  "errors": [
-    {
-      "status": "422",
-      "title": "not authorized error"
+  "data": {
+    "id": "1",
+    "type": "dogs",
+    "attributes": {
+      "user_id": 3,
+      "birthday": "2015-01-01T05:00:00.000Z",
+      "image_url": "http://www.example_image_url_3.jpg",
+      "name": "Doge Bryant",
+      "size": "L",
+      "sex": "M"
     }
-  ]
+  }
 }</pre>

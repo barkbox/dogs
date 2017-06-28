@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601210640) do
+ActiveRecord::Schema.define(version: 20170621162750) do
 
   create_table "dogs", force: :cascade do |t|
-    t.integer  "bark_user_id"
+    t.integer  "user_id"
     t.string   "name"
     t.datetime "birthday"
     t.string   "size"
+    t.string   "sex"
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,15 +27,8 @@ ActiveRecord::Schema.define(version: 20170601210640) do
 
   add_index "dogs", ["deleted_at"], name: "index_dogs_on_deleted_at"
 
-  create_table "versions", force: :cascade do |t|
-    t.string   "item_type",                     null: false
-    t.integer  "item_id",                       null: false
-    t.string   "event",                         null: false
-    t.string   "whodunnit"
-    t.text     "object",     limit: 1073741823
-    t.datetime "created_at"
+  create_table "users", force: :cascade do |t|
+    t.boolean "is_admin", default: false
   end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end
