@@ -24,7 +24,7 @@ class DogsController < Dogs::ApplicationController
       filtered_params.merge!(image_url: image_url)
     end
     dog = Dog.new(filtered_params)
-    dog.save
+    dog.save!
     render json: dog, serializer: V1::DogSerializer
   end
 
@@ -36,14 +36,14 @@ class DogsController < Dogs::ApplicationController
     end
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
-    dog.update(filtered_params)
+    dog.update!(filtered_params)
     render json: dog, serializer: V1::DogSerializer
   end
 
   def destroy
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
-    dog.destroy
+    dog.destroy!
     render json: dog, serializer: V1::DogSerializer
   end
 
@@ -51,6 +51,16 @@ class DogsController < Dogs::ApplicationController
 
   def dog_params
     params.permit(:name, :birthday, :size, :sex, :user_id)
+  end
+
+  def cursor_params
+    if params[:cursor] && params[:cursor].has_key?(:after)
+      { after: params[:cursor][:after] }
+    elsif params[:cursor] && params[:cursor].has_key?(:before)
+      { before: params[:cursor][:before] }
+    else
+      { before: nil }
+    end
   end
 
   def upload_image(image)
