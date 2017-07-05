@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'DogsController', type: :request do
-  let(:options) {{ namespace: V1, adapter: :json_api }}
+  let(:options) {{ namespace: V1, adapter: :json }}
 
   before do
     options[:serialization_context] = nil # serialization_context should be reset on each request
@@ -277,11 +277,11 @@ describe 'DogsController', type: :request do
 
         expect(response).to be_ok
         expect(response_json).to eq(serialize(@dog.reload, options))
-        expect(response_json['data']['attributes']['name']).to eq('Pickles')
-        expect(response_json['data']['attributes']['size']).to eq('S')
-        expect(response_json['data']['attributes']['sex']).to eq('F')
-        expect(response_json['data']['attributes']['image_url']).to eq('https://www.example_image_update.jpg')
-        expect(DateTime.parse(response_json['data']['attributes']['birthday'])).to eq(DateTime.new(2012,11,4))
+        expect(response_json['dog']['name']).to eq('Pickles')
+        expect(response_json['dog']['size']).to eq('S')
+        expect(response_json['dog']['sex']).to eq('F')
+        expect(response_json['dog']['image_url']).to eq('https://www.example_image_update.jpg')
+        expect(DateTime.parse(response_json['dog']['birthday'])).to eq(DateTime.new(2012,11,4))
       end
     end
 
