@@ -8,13 +8,13 @@ class DogsController < Dogs::ApplicationController
       dogs = Dog.all
     end
     authorize_for_resources(dogs)
-    render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer, adapter: :json, key_transform: :underscore
+    render json: dogs.cursor(cursor_params), each_serializer: V1::DogSerializer, adapter: :attributes, key_transform: :underscore
   end
 
   def show
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
-    render json: dog, serializer: V1::DogSerializer, adapter: :json, key_transform: :underscore
+    render json: dog, serializer: V1::DogSerializer, adapter: :attributes, key_transform: :underscore
   end
 
   def create
@@ -25,7 +25,7 @@ class DogsController < Dogs::ApplicationController
     end
     dog = Dog.new(filtered_params)
     dog.save!
-    render json: dog, serializer: V1::DogSerializer, adapter: :json, key_transform: :underscore
+    render json: dog, serializer: V1::DogSerializer, adapter: :attributes, key_transform: :underscore
   end
 
   def update
@@ -37,14 +37,14 @@ class DogsController < Dogs::ApplicationController
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
     dog.update!(filtered_params)
-    render json: dog, serializer: V1::DogSerializer, adapter: :json, key_transform: :underscore
+    render json: dog, serializer: V1::DogSerializer, adapter: :attributes, key_transform: :underscore
   end
 
   def destroy
     dog = Dog.find(params[:id])
     authorize_for_resource(dog)
     dog.destroy!
-    render json: dog, serializer: V1::DogSerializer, adapter: :json, key_transform: :underscore
+    render json: dog, serializer: V1::DogSerializer, adapter: :attributes, key_transform: :underscore
   end
 
   private
