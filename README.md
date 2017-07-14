@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'dogs', github: 'barkbox/dogs', tag: '0.1.0'
+gem 'dogs', github: 'barkbox/dogs', tag: '0.1.1'
 ```
 
 And then execute:
