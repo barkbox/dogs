@@ -5,6 +5,7 @@ FactoryGirl.define do
     birthday Time.local(2015,1,1)
     size     'M'
     sex      'M'
+    breed    'Shiba Inu'
     sequence(:image_url) { |n| "http://www.example_image_url_#{n}.jpg" }
   end
 
