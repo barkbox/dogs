@@ -21,11 +21,11 @@ Cookie: </pre>
 
 #### Route
 
-<pre>GET /dogs?user_id=2</pre>
+<pre>GET /dogs?user_id=1</pre>
 
 #### Query Parameters
 
-<pre>user_id: 2</pre>
+<pre>user_id: 1</pre>
 
 ### Response
 
@@ -35,11 +35,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;a1b725c81bf430f1d3835f296747b496&quot;
+ETag: W/&quot;3ab4cd3053a8fe83152014d796a07567&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 655df708-b3aa-4fa2-af1d-f8b27afb3a2f
-X-Runtime: 0.005176
-Content-Length: 529</pre>
+X-Request-Id: 3eaf532c-7eb5-4f78-88c9-aac25ad5c635
+X-Runtime: 0.020575
+Content-Length: 179</pre>
 
 #### Status
 
@@ -47,26 +47,15 @@ Content-Length: 529</pre>
 
 #### Body
 
-<pre>{
-  "data": [
-    {
-      "id": "1",
-      "type": "dogs",
-      "attributes": {
-        "user_id": 2,
-        "birthday": "2015-01-01T05:00:00.000Z",
-        "image_url": "http://www.example_image_url_2.jpg",
-        "name": "Cristiano Ruffnaldo",
-        "size": "M",
-        "sex": "M"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://example.org/dogs?user_id=2&cursor[before]=2",
-    "first": "http://example.org/dogs?user_id=2&cursor[before]",
-    "prev": "http://example.org/dogs?user_id=2&cursor[after]=1",
-    "next": "http://example.org/dogs?user_id=2&cursor[before]=1",
-    "last": "http://example.org/dogs?user_id=2&cursor[after]"
+<pre>[
+  {
+    "id": 1,
+    "user_id": 1,
+    "birthday": "2015-01-01T05:00:00.000Z",
+    "image_url": "http://www.example_image_url_1.jpg",
+    "name": "Cristiano Ruffnaldo",
+    "size": "M",
+    "sex": "M",
+    "breed": "Shiba Inu"
   }
-}</pre>
+]</pre>
