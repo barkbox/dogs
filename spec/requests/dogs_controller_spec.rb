@@ -212,6 +212,7 @@ describe 'DogsController', type: :request do
           birthday: DateTime.new(2012,11,4),
           size: 'M',
           sex: 'M',
+          breed: 'Shiba Inu',
           image: 'https://www.example_image_create.jpg'
         }
         post dogs_path(params)
@@ -269,6 +270,7 @@ describe 'DogsController', type: :request do
           birthday: DateTime.new(2012,11,4),
           size: 'S',
           sex: 'F',
+          breed: 'Mutt',
           image: 'https://www.example_image_update.jpg'
         }
         put dog_path(params)
@@ -280,6 +282,7 @@ describe 'DogsController', type: :request do
         expect(response_json['name']).to eq('Pickles')
         expect(response_json['size']).to eq('S')
         expect(response_json['sex']).to eq('F')
+        expect(response_json['breed']).to eq('Mutt')
         expect(response_json['image_url']).to eq('https://www.example_image_update.jpg')
         expect(DateTime.parse(response_json['birthday'])).to eq(DateTime.new(2012,11,4))
       end

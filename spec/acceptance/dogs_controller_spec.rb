@@ -36,6 +36,8 @@ resource 'Dogs' do
     parameter :image, 'Can be image file, IO object, or url'
     parameter :name
     parameter :size
+    parameter :sex
+    parameter :breed
 
     let(:user_id) { 1 }
     let(:birthday) { Time.zone.now }
@@ -43,6 +45,7 @@ resource 'Dogs' do
     let(:name) { 'Cristiano Ruffnaldo' }
     let(:size) { 'M' }
     let(:sex) { 'M' }
+    let(:breed) { 'Shiba Inu' }
 
     example_request 'Create dog' do
       expect(status).to eq(200)
@@ -50,15 +53,22 @@ resource 'Dogs' do
   end
 
   patch '/dogs/:id' do
-    explanation 'also able to do via PUT' 
+    explanation 'also able to do via PUT'
+    parameter :birthday, 'Any object that can be stored as DateTime'
+    parameter :image, 'Can be image file, IO object, or url'
     parameter :name
     parameter :size
+    parameter :sex
+    parameter :breed
 
     let(:dog) { create(:dog) }
     let(:id) { dog.id }
+    let(:birthday) { Time.zone.now }
+    let(:image) { 'www.example.com/pickles.jpg' }
     let(:name) { 'Doge Bryant'  }
     let(:size) { 'L' }
     let(:sex) { 'F' }
+    let(:breed) { 'Shiba Inu' }
 
     example_request 'Update dog' do
       expect(status).to eq(200)

@@ -50,7 +50,7 @@ class DogsController < Dogs::ApplicationController
   private
 
   def dog_params
-    params.permit(:name, :birthday, :size, :sex, :user_id)
+    params.permit(:name, :birthday, :size, :sex, :breed, :user_id)
   end
 
   def cursor_params
