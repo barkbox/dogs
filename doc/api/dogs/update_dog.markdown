@@ -31,7 +31,7 @@ Cookie: </pre>
 
 #### Body
 
-<pre>birthday=2017-07-17+18%3A31%3A23+UTC&image=www.example.com%2Fpickles.jpg&name=Doge+Bryant&size=L&sex=F&breed=Shiba+Inu</pre>
+<pre>birthday=2017-08-07+21%3A18%3A33+UTC&image=www.example.com%2Fpickles.jpg&name=Doge+Bryant&size=L&sex=F&breed=Shiba+Inu</pre>
 
 ### Response
 
@@ -41,11 +41,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;add6b56360e0fd685bc9a840035f3e64&quot;
+ETag: W/&quot;062792865a7cffbf6fe11501412421d2&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 253e9e41-5aef-44a0-b15d-1793ed637e08
-X-Runtime: 0.011284
-Content-Length: 168</pre>
+X-Request-Id: 14a4fd18-6ed0-4aee-9074-ba648ff8c022
+X-Runtime: 0.013828
+Content-Length: 248</pre>
 
 #### Status
 
@@ -55,11 +55,13 @@ Content-Length: 168</pre>
 
 <pre>{
   "id": 1,
-  "user_id": 3,
-  "birthday": "2017-07-17T18:31:23.000Z",
+  "user_id": 2,
+  "birthday": "2017-08-07T21:18:33.000Z",
   "image_url": "https://www.example_image_url.jpg",
   "name": "Doge Bryant",
   "size": "L",
   "sex": "F",
-  "breed": "Shiba Inu"
+  "breed": "Shiba Inu",
+  "created_at": "2017-08-07T21:18:33.318Z",
+  "updated_at": "2017-08-07T21:18:33.331Z"
 }</pre>
