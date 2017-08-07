@@ -22,11 +22,11 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;6c79cb27de708d9801e00f0371b1e27b&quot;
+ETag: W/&quot;391353ff7cd4bb3f0744a492a231eda8&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: a8eaee23-5d54-4008-9ba0-b9996f7195c8
-X-Runtime: 0.004424
-Content-Length: 177</pre>
+X-Request-Id: f2de8f49-bf3a-49e0-a69d-d37313ea4ed8
+X-Runtime: 0.004049
+Content-Length: 257</pre>
 
 #### Status
 
@@ -36,11 +36,13 @@ Content-Length: 177</pre>
 
 <pre>{
   "id": 1,
-  "user_id": 4,
+  "user_id": 3,
   "birthday": "2015-01-01T05:00:00.000Z",
-  "image_url": "http://www.example_image_url_4.jpg",
+  "image_url": "http://www.example_image_url_3.jpg",
   "name": "Cristiano Ruffnaldo",
   "size": "M",
   "sex": "M",
-  "breed": "Shiba Inu"
+  "breed": "Shiba Inu",
+  "created_at": "2017-08-07T21:18:33.349Z",
+  "updated_at": "2017-08-07T21:18:33.349Z"
 }</pre>
